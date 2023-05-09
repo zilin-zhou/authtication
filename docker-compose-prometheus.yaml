@@ -1,0 +1,28 @@
+services:
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: always
+    container_name: prometheus   # 容器名称
+    ports:
+      - 9090:9090   # 确保端口未被占用
+    # extra_hosts:
+    #   - "orderer.example.com:127.0.0.1"
+    #   - "peer0.org1.example.com:127.0.0.1"
+    #   - "peer1.org1.example.com:127.0.0.1"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    container_name: grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+
+networks:
+  default:
+      external: true
+      name: fixtures_test

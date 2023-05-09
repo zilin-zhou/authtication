@@ -1,0 +1,7 @@
+global:
+  scrape_interval:     30s # # 将scrape间隔设置为每15秒。默认为每1分钟
+  evaluation_interval: 30s # 每15秒评估一次规则。默认为1分钟。
+scrape_configs:
+  - job_name: 'hyperledger-fabric'
+    static_configs:
+      - targets: ['172.18.0.5:8443','172.18.0.6:9443','172.18.0.7:9553'] 

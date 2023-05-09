@@ -1,0 +1,45 @@
+test:
+    name: zero_gnark-contract-benchmark
+    description: test benchmark
+    workers:
+      number: 2
+    rounds:
+      - label: addinfo
+        description: addinfobenchmark
+        txNumber: 10000
+        # txDuration: 30
+        rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 2
+        workload:
+          module: workload/addinfo.js
+          arguments:
+            assets: 10
+            contractId: zero_gnark
+      - label: addacc1info
+        description: addacc1info benchmark
+        txNumber: 10000
+        # txDuration: 30
+        rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 2
+        workload:
+          module: workload/accinfo.js
+          arguments:
+            assets: 10
+            contractId: zero_gnark
+      - label: addacc2info
+        description: addacc2info benchmark
+        txNumber: 10000
+        # txDuration: 30
+        rateControl:
+          type: fixed-load
+          opts:
+            transactionLoad: 2
+        workload:
+          module: workload/acc2info.js
+          arguments:
+            assets: 10
+            contractId: zero_gnark
